@@ -2,7 +2,7 @@
 
 <p align="center">
 
-<img src="https://img.shields.io/appveyor/tests/:user/:repo" alt="Tests">
+<a href="#"><img src="https://github.com/hendrix97s/test-nano-incub/actions/workflows/actions.yml/badge.svg" alt="Tests"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
