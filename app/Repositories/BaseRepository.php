@@ -46,7 +46,7 @@ class BaseRepository
     return $model;
   }
 
-  public function deteByUuid($uuid)
+  public function destroyByUuid($uuid)
   {
     $model = $this->model->where('uuid', $uuid)->first();
     return $model->delete();

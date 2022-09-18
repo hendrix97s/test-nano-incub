@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\User;
+use App\Repositories\UserRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -101,8 +102,8 @@ class UserTest extends TestCase
         $employee->assignRole('funcionario');
       }
 
-      $adm = User::find($admin->id);
-      $adm->makeVisible('funcionarios');
-      $this->assertEquals($adm->funcionarios->count(), 3);
+      $repository = new UserRepository();
+      $funcionarios = $repository->getAllFuncionarios();
+      $this->assertEquals($funcionarios->count(), 3);
     }
 }

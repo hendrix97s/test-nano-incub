@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FuncionarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,5 +25,9 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
-->middleware(['auth'])->name('dashboard');
+Route::group(['middleware' => ['auth']], function(){
+  Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+  Route::resource('/funcionario', FuncionarioController::class)->parameters([
+    'funcionario' => 'uuid'
+  ]);
+});
