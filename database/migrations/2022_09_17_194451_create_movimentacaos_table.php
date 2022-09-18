@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('movimentacaos', function (Blueprint $table) {
+        Schema::create('movimentacoes', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
             $table->foreignId('administrador_id')->constrained('users');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('tipo_movimentacao', ['entrada', 'saida']);
             $table->float('valor', 8, 2);
             $table->string('observacao')->nullable();
-            $table->timestamps();
+            $table->timestamp('data_criacao');
         });
     }
 
