@@ -57,4 +57,8 @@ class BaseRepository
     return $this->model->paginate($perPage);
   }
 
+  public function where($column, $value)
+  {
+    return $this->model->where($column, $value);
+  }
 }
