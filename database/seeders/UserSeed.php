@@ -17,8 +17,8 @@ class UserSeed extends Seeder
     public function run()
     {
       $admin = User::factory()->create([
-        'nome' => 'Admin',
-        'login' => 'admin@nanoincub.test',
+        'nome' => 'Luiz F. Lima',
+        'login' => 'luiz.lima@nanoincub.com',
         'senha' => Hash::make('123456'),
       ]);
 
