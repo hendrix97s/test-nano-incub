@@ -39,7 +39,7 @@ class LoginController extends Controller
           
         default:
           Auth::login($user);
-          return redirect()->route('dashboard');
+          return redirect()->route('dashboard.index');
           break;
       }
     }

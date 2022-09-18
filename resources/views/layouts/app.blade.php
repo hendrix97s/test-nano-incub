@@ -28,14 +28,14 @@
           </li>
 
           <li>
-            <a href="{{route('funcionario.index')}}" class="flex items-center gap-2 px-7 py-2 text-white hover:bg-slate-700 transition-colors ">
+            <a href="{{route('funcionarios.index')}}" class="flex items-center gap-2 px-7 py-2 text-white hover:bg-slate-700 transition-colors ">
             <i class="fa-solid fa-money-bill-transfer"></i>
               <span>Movimentação</span>
             </a>
           </li>
 
           <li>
-            <a href="{{route('funcionario.index')}}" class="flex items-center gap-2 px-7 py-2 text-white hover:bg-slate-700 transition-colors ">
+            <a href="{{route('funcionarios.index')}}" class="flex items-center gap-2 px-7 py-2 text-white hover:bg-slate-700 transition-colors ">
               <i class="fas fa-home"></i>
               <span>Funcionários</span>
             </a>

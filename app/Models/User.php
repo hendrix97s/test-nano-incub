@@ -26,14 +26,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'nome',
-        'login',
-        'senha',
-        'saldo_atual',
-        'administrador_id',
+      'nome',
+      'login',
+      'senha',
+      'saldo_atual',
     ];
-
-    protected $appends = ['funcionarios'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,10 +38,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'senha',
-        'administrador_id',
-        'funcionarios',
-        'roles',
+      'senha',
+      'administrador_id',
+      'funcionarios',
+      'roles',
     ];
 
     /**

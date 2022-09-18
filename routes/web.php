@@ -27,7 +27,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 Route::group(['middleware' => ['auth']], function(){
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-  Route::resource('/funcionario', FuncionarioController::class)->parameters([
+  Route::resource('/funcionarios', FuncionarioController::class)->parameters([
     'funcionario' => 'uuid'
   ]);
 });
