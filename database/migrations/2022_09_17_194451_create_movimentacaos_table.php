@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid');
             $table->foreignId('administrador_id')->constrained('users');
-            $table->foreignId('funcionario_id')->nullable()->constrained('users');
+            $table->foreignId('funcionario_id')->constrained('users')->nullable();
             $table->enum('tipo_movimentacao', ['entrada', 'saida']);
             $table->float('valor', 8, 2);
             $table->string('observacao')->nullable();

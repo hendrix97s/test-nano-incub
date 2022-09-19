@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\MovimentacaoRepository;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-  public function index()
+  public function index(MovimentacaoRepository $repository)
   {
-    $entradas = [0, 10, 5, 2, 20, 30, 45, 0, 0, 0, 0, 0];
-    $saidas = [50, 41, 10, 15, 23, 45, 60, 0, 0, 0, 0, 0];
+    $saidas = $repository->getQuantidadePorAnoMes('saida');
+    $entradas = $repository->getQuantidadePorAnoMes('entrada');
     return view('dashboard', compact('entradas', 'saidas'));
   }
 }

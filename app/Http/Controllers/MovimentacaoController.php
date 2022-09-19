@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMovimentacaoRequest;
 use App\Http\Requests\UpdateMovimentacaoRequest;
 use App\Models\Movimentacao;
+use App\Repositories\MovimentacaoRepository;
+use App\Repositories\UserRepository;
 
 class MovimentacaoController extends Controller
 {
@@ -13,9 +15,10 @@ class MovimentacaoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(MovimentacaoRepository $repository)
     {
-        //
+      $movimentacoes = $repository->movimentacoes()->orderBy('data_criacao','desc')->paginate(30);
+      return view('movimentacoes', compact('movimentacoes'));
     }
 
     /**
@@ -23,9 +26,10 @@ class MovimentacaoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(string $uuid, UserRepository $repository)
     {
-        //
+      $funcionario = $repository->findByUuid($uuid);
+      return view('movimentacao', compact('funcionario'));
     }
 
     /**
@@ -34,54 +38,13 @@ class MovimentacaoController extends Controller
      * @param  \App\Http\Requests\StoreMovimentacaoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMovimentacaoRequest $request)
+    public function store(StoreMovimentacaoRequest $request, MovimentacaoRepository $repository)
     {
-        //
+      $data = $request->validated();
+      $funcionarioRepository = new UserRepository();
+      $funcionario = $funcionarioRepository->findByUuid($request->uuid);
+      $data['funcionario_id'] = $funcionario->id;
+      $repository->create($data);
+      return redirect()->route('funcionarios.extrato', $request->uuid);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Movimentacao  $movimentacao
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Movimentacao $movimentacao)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Movimentacao  $movimentacao
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Movimentacao $movimentacao)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateMovimentacaoRequest  $request
-     * @param  \App\Models\Movimentacao  $movimentacao
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateMovimentacaoRequest $request, Movimentacao $movimentacao)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Movimentacao  $movimentacao
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Movimentacao $movimentacao)
-    {
-        //
-    }
-
 }

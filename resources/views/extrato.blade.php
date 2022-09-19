@@ -55,31 +55,38 @@
         </table>
     </div>
 
-    <div class="w-full absolute bottom-8 left-6">
-          <div class="flex flex-row gap-2">
-            @if($extrato->currentPage() > 1)
-              <a href="{{ $extrato->url(1) }}"  class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors hover:bg-slate-800 hover:text-gray-50"><i class="fa-solid fa-angles-left"></i></a>
-              <a href="{{ $extrato->previousPageUrl() }}"  class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors hover:bg-slate-800 hover:text-gray-50"><i class="fa-solid fa-angle-left"></i></a>
-            @endif
+    <div class="absolute bottom-8 left-6">
+      <div class="flex flex-row gap-2">
+        @if($extrato->currentPage() > 1)
+          <a href="{{ $extrato->url(1) }}"  class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors hover:bg-slate-800 hover:text-gray-50"><i class="fa-solid fa-angles-left"></i></a>
+          <a href="{{ $extrato->previousPageUrl() }}"  class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors hover:bg-slate-800 hover:text-gray-50"><i class="fa-solid fa-angle-left"></i></a>
+        @endif
 
-            @for($i=1; $i<=$extrato->lastPage(); $i++) 
-              @if($i== $extrato->currentPage()) 
-                <a class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors bg-slate-800 text-gray-50">{{ $i }}</a>
-              @else
-                <a href="{{ $extrato->url($i) }}"  class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors hover:bg-slate-800 hover:text-gray-50">{{ $i }}</a>
-              @endif
-            @endfor
+        @for($i=1; $i<=$extrato->lastPage(); $i++) 
+          @if($i== $extrato->currentPage()) 
+            <a class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors bg-slate-800 text-gray-50">{{ $i }}</a>
+          @else
+            <a href="{{ $extrato->url($i) }}"  class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors hover:bg-slate-800 hover:text-gray-50">{{ $i }}</a>
+          @endif
+        @endfor
 
-            @if($extrato->currentPage() < $extrato->lastPage())
-              <a href="{{ $extrato->nextPageUrl() }}"  class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors hover:bg-slate-800 hover:text-gray-50">
-                <i class="fa-solid fa-angle-right"></i>
-              </a>
-              <a href="{{ $extrato->url($extrato->lastPage()) }}" class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors hover:bg-slate-800 hover:text-gray-50">
-                <i class="fa-solid fa-angles-right"></i>
-              </a>
-            @endif
-          </div>
-        </div>
+        @if($extrato->currentPage() < $extrato->lastPage())
+          <a href="{{ $extrato->nextPageUrl() }}"  class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors hover:bg-slate-800 hover:text-gray-50">
+            <i class="fa-solid fa-angle-right"></i>
+          </a>
+          <a href="{{ $extrato->url($extrato->lastPage()) }}" class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors hover:bg-slate-800 hover:text-gray-50">
+            <i class="fa-solid fa-angles-right"></i>
+          </a>
+        @endif
+      </div>
+    </div>
+
+                <!-- buttom create -->
+    <div class="flex justify-end items-center absolute right-4 bottom-4">
+      <a href="{{route('movimentacoes.create', $funcionario->uuid)}}" class="flex items-center justify-center w-10 h-10 rounded-full bg-green-500 hover:bg-green-600 text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+      </a>
+    </div>
 </div>
 
 

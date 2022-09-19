@@ -60,7 +60,7 @@
       @if(!$funcionarios->count())
         Nenhum funcionário encontrado :(
       @else
-        <div class="w-full absolute bottom-8">
+        <div class="absolute bottom-8">
           <div class="flex flex-row gap-2">
             @if($funcionarios->currentPage() > 1)
               <a href="{{ $funcionarios->url(1) }}"  class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors hover:bg-slate-800 hover:text-gray-50"><i class="fa-solid fa-angles-left"></i></a>
@@ -88,7 +88,7 @@
       @endif
 
             <!-- buttom create -->
-      <div class="flex justify-end items-center absolute right-8 bottom-4">
+      <div class="flex justify-end items-center absolute right-8 bottom-8">
         <a href="{{route('funcionarios.create')}}" class="flex items-center justify-center w-10 h-10 rounded-full bg-green-500 hover:bg-green-600 text-white">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
         </a>
