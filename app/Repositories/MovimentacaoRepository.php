@@ -14,7 +14,19 @@ class MovimentacaoRepository extends BaseRepository
 
   public function movimentacoes()
   {
-    return $this->model;
+    return $this->model      
+      ->select('movimentacoes.*', 'users.nome as nome_funcionario')
+      ->join('users', 'users.id', '=', 'movimentacoes.funcionario_id')
+      ->orderBy('movimentacoes.data_criacao','desc');
+  }
+
+  public function movimentacoesByNomeFuncionario($nome)
+  {
+    return $this->model
+      ->select('movimentacoes.*', 'users.nome as nome_funcionario')
+      ->join('users', 'users.id', '=', 'movimentacoes.funcionario_id')
+      ->where('users.nome', 'like', '%' . $nome . '%')
+      ->orderBy('movimentacoes.data_criacao','desc');
   }
 
   public function getExtratoByFuncionario(int $id)

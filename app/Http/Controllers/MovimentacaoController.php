@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateMovimentacaoRequest;
 use App\Models\Movimentacao;
 use App\Repositories\MovimentacaoRepository;
 use App\Repositories\UserRepository;
+use Illuminate\Http\Request;
 
 class MovimentacaoController extends Controller
 {
@@ -15,9 +16,14 @@ class MovimentacaoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(MovimentacaoRepository $repository)
+    public function index(Request $request, MovimentacaoRepository $repository)
     {
-      $movimentacoes = $repository->movimentacoes()->orderBy('data_criacao','desc')->paginate(30);
+      if($request->nome != null or $request->nome != '') {
+        $movimentacoes = $repository->movimentacoesByNomeFuncionario($request->nome)->paginate(config('settings.paginate_movimentacao'));
+      } else {
+        $movimentacoes = $repository->movimentacoes()->paginate(30);
+      }
+
       return view('movimentacoes', compact('movimentacoes'));
     }
 
