@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,10 +27,12 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 Route::group(['middleware' => ['auth']], function(){
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-  Route::resource('/funcionarios', FuncionarioController::class)
-  ->only(['index', 'edit', 'create', 'store', 'destroy'])
+  Route::resource('/funcionarios', UserController::class)
+  ->only(['index', 'edit', 'create'])
   ->parameters([
     'funcionario' => 'uuid'
   ]);
-  Route::post('/funcionarios/{uuid}/update', [FuncionarioController::class, 'update'])->name('funcionarios.update');
+  Route::post('/funcionarios/{uuid}/update', [UserController::class, 'update'])->name('funcionarios.update');
+  Route::post('/funcionarios/{uuid}/store', [UserController::class, 'update'])->name('funcionarios.store');
+  Route::post('/funcionarios/{uuid}/destroy', [UserController::class, 'update'])->name('funcionarios.destroy');
 });
