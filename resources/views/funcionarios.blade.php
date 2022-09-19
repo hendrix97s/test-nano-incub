@@ -32,15 +32,16 @@
             <img class="w-16 rounded-full shadow-xl" src="{{asset('storage/img/avatar/avatar-male.png')}}" alt="avatar">
           </div>
           <div  class="card-bodyflex flex-col justify-center mt-1 w-96 h-full">
-            <h5 class="card-title font-semibold"># {{ $funcionario->id }}</h5>
-            <h5 class="card-title font-semibold">Nome: {{ $funcionario->nome }}</h5>
+            <h2 class="card-title font-semibold">{{ $funcionario->nome }}</h2>
             <p  class="card-text">Saldo atual: R$ {{ $funcionario->saldo_atual }}</p>
             <p  class="card-text">Data de criação: {{ $funcionario->data_criacao->format('d/m/Y') }}</p>
           </div>
           
           <div class="w-80 relative">
-            <a href="{{ route('funcionarios.show', $funcionario->uuid) }}" class="card-link absolute bottom-0 right-2">
-              <i class="fa-solid fa-eye"></i>
+            <h5 class="card-title font-semibold absolute  top-0 right-2">#{{ $funcionario->id }}</h5>
+
+            <a href="{{ route('funcionarios.edit', $funcionario->uuid) }}" class="card-link absolute bottom-0 right-2">
+              <i class="fa-regular fa-pen-to-square"></i>
             </a>
           </div>
         </div>
@@ -49,10 +50,9 @@
       @if(!$funcionarios->count())
         Nenhum funcionário encontrado :(
       @else
-        <div class="w-full">
+        <div class="w-full absolute bottom-8">
           <div class="flex flex-row gap-2">
-
-            @if($funcionarios->currentPage() != 1)
+            @if($funcionarios->currentPage() > 1)
               <a href="{{ $funcionarios->url(1) }}"  class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors hover:bg-slate-800 hover:text-gray-50"><i class="fa-solid fa-angles-left"></i></a>
               <a href="{{ $funcionarios->previousPageUrl() }}"  class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors hover:bg-slate-800 hover:text-gray-50"><i class="fa-solid fa-angle-left"></i></a>
             @endif
@@ -65,7 +65,7 @@
               @endif
             @endfor
 
-            @if($funcionarios->currentPage() != $funcionarios->lastPage())
+            @if($funcionarios->currentPage() < $funcionarios->lastPage())
               <a href="{{ $funcionarios->nextPageUrl() }}"  class="flex items-center justify-center w-8 h-8 rounded-lg border p-2 transition-colors hover:bg-slate-800 hover:text-gray-50">
                 <i class="fa-solid fa-angle-right"></i>
               </a>

@@ -27,7 +27,10 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 Route::group(['middleware' => ['auth']], function(){
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-  Route::resource('/funcionarios', FuncionarioController::class)->parameters([
+  Route::resource('/funcionarios', FuncionarioController::class)
+  ->only(['index', 'edit', 'create', 'store', 'destroy'])
+  ->parameters([
     'funcionario' => 'uuid'
   ]);
+  Route::post('/funcionarios/{uuid}/update', [FuncionarioController::class, 'update'])->name('funcionarios.update');
 });

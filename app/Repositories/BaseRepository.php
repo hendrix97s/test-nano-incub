@@ -21,6 +21,11 @@ class BaseRepository
     return $this->model->find($id);
   }
 
+  public function findByUuid($uuid)
+  {
+    return $this->model->where('uuid', $uuid)->first();
+  }
+
   public function create($data)
   {
     return $this->model->create($data);
