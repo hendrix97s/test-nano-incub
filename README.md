@@ -16,3 +16,21 @@
 - [docker](https://docs.docker.com/get-docker/) 20.10.17
 
 ## Descrição
+
+
+## Build tailwindcss
+
+```bash 
+./docker/bin/sail npm run dev
+
+```
+
+or
+
+```bash
+
+./docker/bin/sail npm run watch
+
+```
+
+
