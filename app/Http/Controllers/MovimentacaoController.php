@@ -83,4 +83,5 @@ class MovimentacaoController extends Controller
     {
         //
     }
+
 }

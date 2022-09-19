@@ -10,4 +10,9 @@ class MovimentacaoRepository extends BaseRepository
   {
     parent::__construct(Movimentacao::class);
   }
+
+  public function getExtratoByFuncionario(int $id)
+  {
+    return $this->model->where('funcionario_id', $id);
+  }
 }

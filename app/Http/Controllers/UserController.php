@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Repositories\MovimentacaoRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
@@ -81,5 +82,13 @@ class UserController extends Controller
   {
     $repository->destroyByUuid($uuid);
     return redirect()->route('funcionarios.index');
+  }
+
+  public function extrato(string $uuid, UserRepository $repository)
+  {
+    $funcionario = $repository->findByUuid($uuid);
+    $movimentacaoRepository = new MovimentacaoRepository();
+    $extrato = $movimentacaoRepository->getExtratoByFuncionario($funcionario->id)->paginate(config('settings.paginate_movimentacao'));
+    return view('extrato', compact('funcionario','extrato'));
   }
 }

@@ -18,8 +18,8 @@ class MovimentacaoFactory extends Factory
     public function definition()
     {
       return [
-        'administrador_id' => User::factory(),
-        'funcionario_id' => User::factory(),
+        'administrador_id' => User::class,
+        'funcionario_id' => User::class,
         'tipo_movimentacao' => $this->faker->randomElement(['entrada', 'saida']),
         'valor' => $this->faker->randomFloat(2, 0, 100),
         'observacao' => $this->faker->sentence,

@@ -38,8 +38,10 @@
           </div>
           
           <div class="w-80 relative">
-            <h5 class="card-title font-semibold absolute  top-0 right-2">#{{ $funcionario->id }}</h5>
+            <a href="{{ route('funcionarios.extrato', $funcionario->uuid) }}" class="card-link absolute   top-0 right-2">
 
+            <i class="fa-solid fa-money-bill-transfer"></i>
+            </a>
             <!-- remover funcionario -->
             <form action="{{ route('funcionarios.destroy', $funcionario->uuid) }}" method="post" class="absolute bottom-6 right-[10px]">
               @csrf
@@ -56,7 +58,7 @@
       @endforeach
 
       @if(!$funcionarios->count())
-        Nenhum funcion�rio encontrado :(
+        Nenhum funcionário encontrado :(
       @else
         <div class="w-full absolute bottom-8">
           <div class="flex flex-row gap-2">

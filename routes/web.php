@@ -34,4 +34,6 @@ Route::group(['middleware' => ['auth']], function(){
   ]);
   Route::post('/funcionarios/{uuid}/update', [UserController::class, 'update'])->name('funcionarios.update');
   Route::post('/funcionarios/{uuid}/destroy', [UserController::class, 'destroy'])->name('funcionarios.destroy');
+  Route::get('/funcionarios/{uuid}/extrato', [UserController::class, 'extrato'])->name('funcionarios.extrato');
+
 });
