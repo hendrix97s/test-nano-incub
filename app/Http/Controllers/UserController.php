@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class UserController extends Controller
   public function create(UserRepository $repository)
   {
     $resource = 'create';
-    return view('funcionario', compact('funcionario', 'resource'));
+    return view('funcionario', compact('resource'));
   }
 
   /**
@@ -79,6 +80,6 @@ class UserController extends Controller
   public function destroy(string $uuid, UserRepository $repository)
   {
     $repository->destroyByUuid($uuid);
-    return redirect()->route('funcionario.index');
+    return redirect()->route('funcionarios.index');
   }
 }

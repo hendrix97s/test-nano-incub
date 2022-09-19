@@ -10,4 +10,9 @@ class UserObserver
     {
       $user->saldo_atual = 0;
     }
+
+    public function created(User $user)
+    {
+      $user->assignRole('funcionario');
+    }
 }
