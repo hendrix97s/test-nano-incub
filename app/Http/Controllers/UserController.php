@@ -41,7 +41,8 @@ class UserController extends Controller
    */
   public function store(UpdateUserRequest $request, UserRepository $repository)
   {
-    $repository->create($request->validated());
+    $user = $repository->create($request->validated());
+    $user->assignRole('funcionario');
     return redirect()->route('funcionarios.index');
   }
 

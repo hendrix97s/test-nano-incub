@@ -15,4 +15,9 @@ class MovimentacaoRepository extends BaseRepository
   {
     return $this->model->where('funcionario_id', $id);
   }
+
+  public function removeRelacionamentoPorFuncionario(int $id)
+  {
+    $this->model->where('funcionario_id', $id)->update(['funcionario_id' => null]);
+  }
 }

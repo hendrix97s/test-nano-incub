@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\User;
+use App\Repositories\MovimentacaoRepository;
 
 class UserObserver
 {
@@ -13,6 +14,12 @@ class UserObserver
 
     public function created(User $user)
     {
-      $user->assignRole('funcionario');
+    }
+
+    public function deleting(User $user)
+    {
+      $user->removeRole('funcionario');
+      $repository = new MovimentacaoRepository();
+      $repository->removeRelacionamentoPorFuncionario($user->id);
     }
 }
